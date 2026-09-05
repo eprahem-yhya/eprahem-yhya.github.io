@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Eprahem Yhya — Bot &amp; Web Developer</title>
+<meta name="description" content="Eprahem Yhya — freelance bot and web developer. Python, Telegram automation, trading systems, and 3D web.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#14110E;
+  --body:#413B34;
+  --muted:#7C736A;
+  --accent:#9A6B2F;
+  --line:#E4DED5;
+  --paper:#FDFBF7;
+  --sans:'Inter',system-ui,sans-serif;
+  --display:'Fraunces',Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:#EFEAE2;color:var(--body);
+  font-family:var(--sans);font-weight:300;line-height:1.62;
+  -webkit-font-smoothing:antialiased;padding:2rem 1rem;
+}
+.sheet{
+  max-width:52rem;margin:0 auto;background:var(--paper);
+  padding:clamp(2rem,5vw,3.6rem);
+  box-shadow:0 1px 2px rgba(0,0,0,.05),0 18px 50px rgba(20,17,14,.10);
+}
+
+/* ---------- header ---------- */
+.name{
+  font-family:var(--display);font-weight:600;
+  font-size:clamp(2.1rem,6vw,3rem);line-height:1.05;color:var(--ink);
+  letter-spacing:-.015em;
+}
+.role{
+  color:var(--accent);font-size:.82rem;font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;margin-top:.5rem;
+}
+.contact{
+  display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;margin-top:1.2rem;
+  font-size:.87rem;color:var(--muted);
+}
+.contact a{color:var(--body);text-decoration:none;border-bottom:1px solid var(--line)}
+.contact a:hover{color:var(--accent);border-color:var(--accent)}
+
+.summary{
+  margin-top:1.6rem;padding-top:1.6rem;border-top:1px solid var(--line);
+  font-size:1rem;color:var(--body);max-width:56ch;
+}
+
+/* ---------- sections ---------- */
+section{margin-top:2.4rem}
+h2{
+  font-size:.72rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--accent);padding-bottom:.6rem;border-bottom:1px solid var(--line);
+  margin-bottom:1.4rem;
+}
+
+.project{margin-bottom:1.9rem;break-inside:avoid}
+.project:last-child{margin-bottom:0}
+.project-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.5rem .9rem}
+.project h3{
+  font-family:var(--display);font-size:1.22rem;font-weight:600;color:var(--ink);
+}
+.tag{
+  font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);border:1px solid var(--line);padding:.12rem .5rem;border-radius:2px;
+}
+.project .live{font-size:.82rem;color:var(--accent);text-decoration:none;border-bottom:1px solid currentColor}
+.project .lede{margin:.45rem 0 .6rem;color:var(--body);font-size:.95rem}
+.project ul{list-style:none;font-size:.92rem}
+.project li{position:relative;padding-inline-start:1rem;margin-bottom:.28rem;color:var(--body)}
+.project li::before{
+  content:'';position:absolute;inset-inline-start:0;top:.72em;
+  width:4px;height:1px;background:var(--accent);
+}
+.stack{margin-top:.6rem;font-size:.8rem;color:var(--muted);letter-spacing:.02em}
+
+/* ---------- skills ---------- */
+.skills{display:grid;gap:.9rem 2rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr))}
+.skills dt{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);font-weight:600}
+.skills dd{font-size:.92rem;color:var(--body);margin-top:.15rem}
+
+/* ---------- two-up rows ---------- */
+.row{display:grid;gap:1.4rem 2.4rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr))}
+.entry h3{font-size:1rem;font-weight:500;color:var(--ink)}
+.entry .meta{font-size:.85rem;color:var(--muted)}
+
+footer{
+  margin-top:2.6rem;padding-top:1.2rem;border-top:1px solid var(--line);
+  font-size:.78rem;color:var(--muted);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+}
+
+/* ---------- print ---------- */
+.print-btn{
+  position:fixed;right:1.2rem;bottom:1.2rem;z-index:5;
+  background:var(--ink);color:var(--paper);border:0;cursor:pointer;
+  font:inherit;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;
+  padding:.8rem 1.5rem;border-radius:999px;box-shadow:0 8px 24px rgba(20,17,14,.25);
+}
+@media print{
+  @page{size:A4;margin:14mm}
+  body{background:#fff;padding:0}
+  .sheet{box-shadow:none;max-width:none;padding:0}
+  .print-btn{display:none}
+  a{color:inherit}
+  section{margin-top:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<button class="print-btn" onclick="print()">Save as PDF</button>
+
+<div class="sheet">
+
+  <header>
+    <h1 class="name">Eprahem Yhya</h1>
+    <p class="role">Bot &amp; Web Developer</p>
+    <div class="contact">
+      <span>Gaza, Palestine · Remote</span>
+      <a href="mailto:eprahemyhya45@gmail.com">eprahemyhya45@gmail.com</a>
+      <a href="https://wa.me/972598805952">+972 598 805 952</a>
+      <a href="https://github.com/eprahem-yhya">github.com/eprahem-yhya</a>
+    </div>
+    <p class="summary">
+      I build two things: automation that runs unattended, and web pages people
+      remember. On the automation side it is Python bots wired into real systems
+      — Telegram, trading platforms, databases — where the hard part is not
+      writing the feature but keeping it correct at three in the morning with
+      nobody watching. On the web side it is polished, responsive front ends,
+      built with the same care and shipped to production.
+    </p>
+  </header>
+
+  <section>
+    <h2>Selected Work</h2>
+
+    <article class="project">
+      <div class="project-head">
+        <h3>Automated Trading System</h3>
+        <span class="tag">Private source</span>
+      </div>
+      <p class="lede">
+        An end-to-end pipeline that reads trading signals from Telegram,
+        classifies them with an AI model, and executes them on MetaTrader 5.
+        My own concept, built from scratch and developed continuously over four
+        months.
+      </p>
+      <ul>
+        <li>Classifies every incoming message into one of fifteen intents — new order, stop-loss move, partial close, cancellation — and forwards only what is executable.</li>
+        <li>Refuses unsafe instructions by design: an order whose stop sits on the wrong side of entry is rejected, and a request to remove a stop is never obeyed.</li>
+        <li>Web dashboard on FastAPI with a React front end, reading a shared SQLite database in WAL mode alongside the live bot.</li>
+        <li>Three-layer access: bcrypt password, one-time code over Telegram, then a signed session cookie. Reachable remotely through a Cloudflare tunnel.</li>
+        <li>Watchdog and heartbeat monitoring, scheduled backups, and automated weekly performance reports.</li>
+      </ul>
+      <p class="stack">Python · Telethon · MetaTrader5 API · OpenAI API · FastAPI · React · SQLite · Cloudflare Tunnel</p>
+    </article>
+
+    <article class="project">
+      <div class="project-head">
+        <h3>AMBER — Coffee House</h3>
+        <a class="live" href="https://eprahem-yhya.github.io/amber-cafe/">View live</a>
+      </div>
+      <p class="lede">
+        A landing page built around a scroll-driven 3D scene: a coffee bean
+        turns and rises, a porcelain cup grows into its place, steam lifts once
+        there is something to rise from.
+      </p>
+      <ul>
+        <li>Every asset is generated in the browser — the latte art and particle sprites are drawn to a canvas at runtime, so the page ships no images.</li>
+        <li>Environment-mapped reflections and filmic tone mapping, which is what separates a 3D object from a photograph.</li>
+        <li>Full English / Arabic switching with RTL layout, without a reload or a second page.</li>
+        <li>Degrades on purpose: no WebGL, a reduced-motion preference, or a low-memory device gets a static composition instead of a page that stutters.</li>
+        <li>One HTML file, no build step, no framework.</li>
+      </ul>
+      <p class="stack">Three.js · JavaScript modules · CSS · GitHub Pages</p>
+    </article>
+
+    <article class="project">
+      <div class="project-head">
+        <h3>MAISON NOOR — Storefront</h3>
+        <a class="live" href="https://eprahem-yhya.github.io/maison-noor/">View live</a>
+      </div>
+      <p class="lede">
+        A luxury fragrance storefront with a photoreal 3D hero and a working
+        cart, built as one static page.
+      </p>
+      <ul>
+        <li>A real glTF bottle rendered with true glass transmission and refraction, lit by an HDRI environment map so every highlight reflects an actual place.</li>
+        <li>The brand label is drawn to a canvas at runtime and mapped onto the model — what stops a licensed asset from looking licensed.</li>
+        <li>Cart with size variants, quantity, live totals and badge count; the drawer traps focus, restores it on close, and closes on Escape.</li>
+        <li>Palette, type pairing and motion tier resolved from a design-intelligence dataset rather than chosen by eye.</li>
+        <li>Bilingual EN / AR including drawer direction, 44px minimum targets, visible focus, and motion disabled on request.</li>
+      </ul>
+      <p class="stack">Three.js · glTF · HDRI lighting · JavaScript · CSS · GitHub Pages</p>
+    </article>
+
+    <article class="project">
+      <div class="project-head">
+        <h3>Channel Mirror</h3>
+        <span class="tag">Companion tool</span>
+      </div>
+      <p class="lede">
+        A Telegram client that mirrors messages from an external source into a
+        channel I control, including edits and deletions, so downstream systems
+        read from one predictable place instead of a feed I cannot govern.
+      </p>
+      <p class="stack">Python · Telethon · SQLite</p>
+    </article>
+  </section>
+
+  <section>
+    <h2>Technical Skills</h2>
+    <dl class="skills">
+      <div><dt>Languages</dt><dd>Python, JavaScript, SQL, HTML, CSS</dd></div>
+      <div><dt>Automation</dt><dd>Telegram Bot API, Telethon, MetaTrader 5 API, scheduled and long-running services</dd></div>
+      <div><dt>Web</dt><dd>FastAPI, React, Three.js, responsive and RTL layout</dd></div>
+      <div><dt>Data</dt><dd>SQLite (WAL, concurrent readers), schema design, reporting</dd></div>
+      <div><dt>Practice</dt><dd>Git, structured logging, watchdogs and health checks, API integration</dd></div>
+    </dl>
+  </section>
+
+  <section>
+    <h2>Education</h2>
+    <div class="row">
+      <div class="entry">
+        <h3>BSc, Computer Information Systems</h3>
+        <p class="meta">Third year · Expected 2027–2028</p>
+      </div>
+      <div class="entry">
+        <h3>Programming Diploma Year</h3>
+        <p class="meta">Completed before the degree</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Languages</h2>
+    <div class="row">
+      <div class="entry"><h3>Arabic</h3><p class="meta">Native</p></div>
+      <div class="entry"><h3>English</h3><p class="meta">Intermediate — written and technical communication</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Available for freelance and contract work — remote.</span>
+    <span>eprahemyhya45@gmail.com</span>
+  </footer>
+
+</div>
+</body>
+</html>
