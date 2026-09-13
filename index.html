@@ -166,6 +166,30 @@ footer{
 
     <article class="project">
       <div class="project-head">
+        <h3>QR Menu &amp; Table Ordering — Android</h3>
+        <span class="tag">Product, sold to restaurants</span>
+        <a class="live" href="https://eprahem-yhya.github.io/qr-menu-showcase/">See the screens</a>
+      </div>
+      <p class="lede">
+        A complete QR menu and table-ordering system for restaurants that needs
+        no server, no hosting, no subscription and no internet. Menu, ordering,
+        the captain&rsquo;s screen, kitchen printing and the till bill all run
+        inside one Android app on a phone in the restaurant.
+      </p>
+      <ul>
+        <li>The phone is the server: an HTTP server inside the app serves the menu to guests over the restaurant&rsquo;s own WiFi, so service survives an internet outage.</li>
+        <li>Guests scan the QR on the table and order from the browser — nothing to install; the captain confirms each order before the kitchen sees it.</li>
+        <li>Prints to ESC/POS thermal printers per station — grill, bar, till — each getting only its own lines, with Arabic shaped correctly on paper.</li>
+        <li>Arabic or English chosen at setup: every screen, message, printed ticket and QR card follows, and a guest can still switch the menu for themselves.</li>
+        <li>Money handled in whole minor units, so the day&rsquo;s report reconciles against the cash drawer exactly.</li>
+        <li>Over ninety instrumented tests on a real Android device in CI, including one that plays a whole evening through and checks the night&rsquo;s takings, and a run that photographs every screen.</li>
+        <li>Sold as a finished product with a four-day trial and per-device activation, so a buyer works a real evening on it before paying.</li>
+      </ul>
+      <p class="stack">Kotlin · Android · NanoHTTPD · SQLite · ESC/POS printing · GitHub Actions</p>
+    </article>
+
+    <article class="project">
+      <div class="project-head">
         <h3>AMBER — Coffee House</h3>
         <a class="live" href="https://eprahem-yhya.github.io/amber-cafe/">View live</a>
       </div>
@@ -221,11 +245,12 @@ footer{
   <section>
     <h2>Technical Skills</h2>
     <dl class="skills">
-      <div><dt>Languages</dt><dd>Python, JavaScript, SQL, HTML, CSS</dd></div>
+      <div><dt>Languages</dt><dd>Python, Kotlin, JavaScript, SQL, HTML, CSS</dd></div>
       <div><dt>Automation</dt><dd>Telegram Bot API, Telethon, MetaTrader 5 API, scheduled and long-running services</dd></div>
+      <div><dt>Mobile</dt><dd>Android (Kotlin), embedded HTTP server, WebView, instrumented testing on device</dd></div>
       <div><dt>Web</dt><dd>FastAPI, React, Three.js, responsive and RTL layout</dd></div>
       <div><dt>Data</dt><dd>SQLite (WAL, concurrent readers), schema design, reporting</dd></div>
-      <div><dt>Practice</dt><dd>Git, structured logging, watchdogs and health checks, API integration</dd></div>
+      <div><dt>Practice</dt><dd>Git, CI on GitHub Actions, structured logging, watchdogs and health checks, API integration</dd></div>
     </dl>
   </section>
 
