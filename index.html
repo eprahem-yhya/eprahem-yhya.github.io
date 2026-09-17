@@ -161,12 +161,12 @@ footer{
         <li>Watchdog and heartbeat monitoring, scheduled backups, and automated weekly performance reports.</li>
         <li>The control panel is published as a read-only preview: real interface, generated data, inert controls — the source stays private.</li>
       </ul>
-      <p class="stack">Python · Telethon · MetaTrader5 API · OpenAI API · FastAPI · React · SQLite · Cloudflare Tunnel</p>
+      <p class="stack">Python · Telethon · MetaTrader5 API · Gemini API · FastAPI · React · SQLite · Cloudflare Tunnel</p>
     </article>
 
     <article class="project">
       <div class="project-head">
-        <h3>QR Menu &amp; Table Ordering — Android</h3>
+        <h3>QR Menu &amp; Table Ordering — Android and Windows</h3>
         <span class="tag">Product, sold to restaurants</span>
         <a class="live" href="https://eprahem-yhya.github.io/qr-menu-showcase/">See the screens</a>
       </div>
@@ -174,7 +174,8 @@ footer{
         A complete QR menu and table-ordering system for restaurants that needs
         no server, no hosting, no subscription and no internet. Menu, ordering,
         the captain&rsquo;s screen, kitchen printing and the till bill all run
-        inside one Android app on a phone in the restaurant.
+        inside one Android app on a phone in the restaurant &mdash; or, in the
+        Windows edition, on the cashier&rsquo;s PC.
       </p>
       <ul>
         <li>The phone is the server: an HTTP server inside the app serves the menu to guests over the restaurant&rsquo;s own WiFi, so service survives an internet outage.</li>
@@ -184,8 +185,9 @@ footer{
         <li>Money handled in whole minor units, so the day&rsquo;s report reconciles against the cash drawer exactly.</li>
         <li>Over ninety instrumented tests on a real Android device in CI, including one that plays a whole evening through and checks the night&rsquo;s takings, and a run that photographs every screen.</li>
         <li>Sold as a finished product with a four-day trial and per-device activation, so a buyer works a real evening on it before paying.</li>
+        <li>Windows edition: the same screens served by a Python port of the server, shipped as a single .exe with a tray icon &mdash; the cashier sees the full itemised bill on the PC, the captain manages orders from a phone over the LAN, and the roles are enforced server-side. Same database schema and activation, so a phone backup restores on the PC.</li>
       </ul>
-      <p class="stack">Kotlin · Android · NanoHTTPD · SQLite · ESC/POS printing · GitHub Actions</p>
+      <p class="stack">Kotlin · Android · NanoHTTPD · Python · SQLite · ESC/POS printing · PyInstaller · GitHub Actions</p>
     </article>
 
     <article class="project">
@@ -247,7 +249,7 @@ footer{
     <dl class="skills">
       <div><dt>Languages</dt><dd>Python, Kotlin, JavaScript, SQL, HTML, CSS</dd></div>
       <div><dt>Automation</dt><dd>Telegram Bot API, Telethon, MetaTrader 5 API, scheduled and long-running services</dd></div>
-      <div><dt>Mobile</dt><dd>Android (Kotlin), embedded HTTP server, WebView, instrumented testing on device</dd></div>
+      <div><dt>Mobile &amp; desktop</dt><dd>Android (Kotlin), embedded HTTP server, WebView, instrumented testing on device; Windows desktop apps in Python (PyInstaller, tray, WebView2)</dd></div>
       <div><dt>Web</dt><dd>FastAPI, React, Three.js, responsive and RTL layout</dd></div>
       <div><dt>Data</dt><dd>SQLite (WAL, concurrent readers), schema design, reporting</dd></div>
       <div><dt>Practice</dt><dd>Git, CI on GitHub Actions, structured logging, watchdogs and health checks, API integration</dd></div>
