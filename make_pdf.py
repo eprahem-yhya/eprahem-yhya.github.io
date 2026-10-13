@@ -15,7 +15,7 @@ import sys
 CHROME = r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, "index.html")
-OUT = os.path.join(os.path.dirname(HERE), "amber-cafe", "Eprahem-Yhya-CV.pdf")
+OUT = os.path.join(HERE, "Eprahem-Yhya-CV.pdf")
 
 url = "file:///" + SRC.replace(os.sep, "/")
 cmd = [
