@@ -177,6 +177,31 @@ footer{
 
     <article class="project">
       <div class="project-head">
+        <h3>XMIND — Private Community Platform</h3>
+        <span class="tag">Live, members only</span>
+        <a class="live" href="https://x-mind.duckdns.org/">See the sign-in page</a>
+      </div>
+      <p class="lede">
+        A private social network for one closed community of twenty to sixty
+        people: teams, a members directory, profiles with skills, and a feed of
+        posts, photos, comments and mentions. Built with one partner; I wrote
+        the feed and most of the screens, and I run everything after the code
+        &mdash; the server, deployments and backups.
+      </p>
+      <ul>
+        <li>Nobody walks in: an account exists only through an invite, a newcomer joins a team only when its leader accepts, and every action is checked on the server against two role ladders &mdash; founder, admin and member across the site; leader, co-leader and member inside a team.</li>
+        <li>Passwords hashed with Argon2, 30-day sessions in an HttpOnly cookie, rate-limited sign-in, and one-time reset links.</li>
+        <li>Photos are resized and recompressed on upload and served through a route that applies the visibility rule of the post they belong to, so a team-only picture never leaks by its URL.</li>
+        <li>Mentions with group tags &mdash; @team, @leaders, @everyone &mdash; whose reach follows the writer&rsquo;s role, and replies to comments threaded two levels deep.</li>
+        <li>Arabic and English with full right-to-left layout, light and dark themes, and an Android app that wraps the same site.</li>
+        <li>Self-hosted on a Windows server behind Caddy with automatic HTTPS: only ports 80 and 443 are open, the app restarts itself if it stops, and a full backup lands in Telegram every night.</li>
+        <li>Over 150 unit tests and an end-to-end suite that builds the app and drives it through a browser, run before every deploy.</li>
+      </ul>
+      <p class="stack">TypeScript · Next.js · React · Node.js · SQLite · Argon2 · sharp · Caddy</p>
+    </article>
+
+    <article class="project">
+      <div class="project-head">
         <h3>QR Menu &amp; Table Ordering — Android and Windows</h3>
         <span class="tag">Product, sold to restaurants</span>
         <a class="live" href="https://eprahem-yhya.github.io/qr-menu-showcase/">See the screens</a>
@@ -258,10 +283,10 @@ footer{
   <section>
     <h2>Technical Skills</h2>
     <dl class="skills">
-      <div><dt>Languages</dt><dd>Python, Kotlin, JavaScript, SQL, HTML, CSS</dd></div>
+      <div><dt>Languages</dt><dd>Python, Kotlin, TypeScript, JavaScript, SQL, HTML, CSS</dd></div>
       <div><dt>Automation</dt><dd>Telegram Bot API, Telethon, MetaTrader 5 API, scheduled and long-running services</dd></div>
       <div><dt>Mobile &amp; desktop</dt><dd>Android (Kotlin), embedded HTTP server, WebView, instrumented testing on device; Windows desktop apps in Python (PyInstaller, tray, WebView2)</dd></div>
-      <div><dt>Web</dt><dd>FastAPI, React, Three.js, responsive and RTL layout</dd></div>
+      <div><dt>Web</dt><dd>Next.js, React, Node.js, FastAPI, Three.js, responsive and RTL layout; self-hosting behind Caddy with automatic HTTPS</dd></div>
       <div><dt>Data</dt><dd>SQLite (WAL, concurrent readers), schema design, reporting</dd></div>
       <div><dt>Practice</dt><dd>Git, CI on GitHub Actions, structured logging, watchdogs and health checks, API integration</dd></div>
     </dl>
