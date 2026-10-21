@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Telegram → MetaTrader 5 Trade Copier · Eprahem Yhya</title>
+<meta name="description" content="Turns trading signals from a Telegram channel into managed MetaTrader 5 positions: risk-based lots, partial closes, break-even, a stop that trails target by target, end-of-day close, watchdog and reports.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#1f1d1a; --muted:#6b645b; --accent:#a0522d; --paper:#fbf8f3; --line:#e7dfd3; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font:16px/1.6 Inter, system-ui, sans-serif; }
+  main { max-width: 980px; margin: 0 auto; padding: 48px 20px 64px; }
+  h1 { font-family: Fraunces, Georgia, serif; font-weight:600; font-size: clamp(30px, 5vw, 46px); line-height:1.15; margin: 0 0 14px; }
+  h2 { font-family: Fraunces, Georgia, serif; font-weight:600; font-size: 24px; margin: 44px 0 12px; }
+  .kicker { letter-spacing:.18em; text-transform:uppercase; color:var(--accent); font-size:12px; font-weight:600; }
+  .lede { font-size: 18px; color:#3a352f; max-width: 760px; }
+  figure { margin: 18px 0 8px; background:#fff; border:1px solid var(--line); border-radius:14px; padding:10px; }
+  figure img { width:100%; height:auto; display:block; border-radius:8px; }
+  figcaption { color:var(--muted); font-size:13px; padding:8px 4px 2px; }
+  .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:12px; padding:16px 18px; }
+  .card h3 { margin:0 0 6px; font-size:16px; }
+  .card p { margin:0; color:#4a443d; font-size:14.5px; }
+  .note { color:var(--muted); font-size:13.5px; }
+  .cta { margin-top: 40px; background:#fff; border:1px solid var(--line); border-radius:14px; padding: 22px; }
+  .btn { display:inline-block; margin: 8px 10px 0 0; padding: 10px 18px; border-radius: 999px; text-decoration:none; font-weight:500; }
+  .btn.main { background: var(--accent); color:#fff; }
+  .btn.alt { border:1px solid var(--line); color: var(--ink); background:#fff; }
+  a { color: var(--accent); }
+  footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
+</style>
+</head>
+<body>
+<main>
+  <div class="kicker">Product · private source</div>
+  <h1>Telegram → MetaTrader 5 trade copier</h1>
+  <p class="lede">It reads the trading signals your channel posts, sizes every trade from your risk, opens it on MetaTrader 5 within
+    seconds, and then manages it the way a careful trader would: partial profits at the targets, the stop to break-even,
+    a stop that follows the price target by target, and everything closed before the day ends. It runs unattended on a VPS
+    and repairs itself.</p>
+
+  <figure>
+    <img src="architecture.png" alt="Architecture: Telegram channel, reader, durable queue, parser, risk checks and execution, MetaTrader 5, trade manager, watchdog, reports">
+    <figcaption>How it is built: separate processes joined by a durable queue, so no signal is lost and one slow part never blocks the others.</figcaption>
+  </figure>
+
+  <h2>What it does</h2>
+  <div class="grid">
+    <div class="card"><h3>Reads the channel</h3><p>Through the Telegram API, or through Telegram Web for channels that allow no API access. Edits and replies to a call are followed too.</p></div>
+    <div class="card"><h3>Understands the post</h3><p>Entry, stop-loss and up to eight targets in several formats, plus follow-up commands: close, secure at entry, move the stop, take partial profit, half lot.</p></div>
+    <div class="card"><h3>Sizes from risk</h3><p>Lot from the stop distance and your risk per trade, rounded to the broker's steps; caps per trade, per signal and per day.</p></div>
+    <div class="card"><h3>Manages the trade</h3><p>Partial closes at the targets, break-even with a small lock, a stop that trails one or more targets behind, end-of-day close by the broker's clock.</p></div>
+    <div class="card"><h3>Refuses bad orders</h3><p>A stop on the wrong side of the entry, a price too far from the market, a typo in the post: rejected or corrected, never sent blindly.</p></div>
+    <div class="card"><h3>Runs unattended</h3><p>A watchdog restarts anything that stops, alerts on a silent feed, backs up sessions daily and sends a weekly report.</p></div>
+  </div>
+
+  <h2>Trade management, step by step</h2>
+  <figure>
+    <img src="trade-manager.png" alt="Chart: price path with the managed stop moving to break-even and then target by target, partial closes and the final target fill">
+    <figcaption>A replay of the trade manager on generated price data: open, partial closes, stop to break-even, stop moving up one target at a time, final target. It shows the logic, not a profit claim.</figcaption>
+  </figure>
+
+  <h2>Control panel</h2>
+  <figure>
+    <img src="control-panel.png" alt="Control panel showing the live pipeline status, open trades and a gold chart">
+    <figcaption>The control panel (public preview with generated data): pipeline health, open trades and the market at a glance.</figcaption>
+  </figure>
+
+  <p class="note">Every rule above was chosen by replaying hundreds of real past signals on tick-level prices before going live.
+    The system itself is private; this page shows what it does, not its code.</p>
+
+  <div class="cta">
+    <h2 style="margin-top:0">Want it for your channel or your account?</h2>
+    <p>Available as a ready-made setup on your VPS, adapted to your signal format, broker and risk rules, or as a custom build.</p>
+    <a class="btn main" href="https://wa.me/970597448626">Ask on WhatsApp</a>
+    <a class="btn alt" href="mailto:eprahemyhya45@gmail.com">Email</a>
+    <a class="btn alt" href="https://eprahem-yhya.github.io/">See my CV</a>
+  </div>
+
+  <footer>Eprahem Yhya · Python &amp; MetaTrader 5 automation · Gaza, Palestine · remote</footer>
+</main>
+</body>
+</html>
