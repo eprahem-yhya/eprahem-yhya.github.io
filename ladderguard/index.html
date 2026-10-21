@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LadderGuard · MT5 Trade Manager &amp; Account Guard · Eprahem Yhya</title>
+<meta name="description" content="A MetaTrader 5 Expert Advisor that manages every open position (partial closes at TP1 and TP2, break-even, a ladder stop, timed close-all) and guards the account with a daily loss limit, a maximum drawdown and a trades-per-day cap.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://eprahem-yhya.github.io/ladderguard/">
+<meta property="og:title" content="LadderGuard · MT5 Trade Manager &amp; Account Guard">
+<meta property="og:description" content="Partial closes, break-even and a ladder stop for every position, plus a daily loss limit, max drawdown and trades-per-day cap for the whole account.">
+<meta property="og:image" content="https://eprahem-yhya.github.io/ladderguard/panel-mockup.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#1f1d1a; --muted:#6b645b; --accent:#a0522d; --paper:#fbf8f3; --line:#e7dfd3; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font:16px/1.6 Inter, system-ui, sans-serif; }
+  main { max-width: 980px; margin: 0 auto; padding: 48px 20px 96px; }
+  h1 { font-family: Fraunces, Georgia, serif; font-weight:600; font-size: clamp(30px, 5vw, 46px); line-height:1.15; margin: 0 0 14px; }
+  h2 { font-family: Fraunces, Georgia, serif; font-weight:600; font-size: 24px; margin: 44px 0 12px; }
+  .kicker { letter-spacing:.18em; text-transform:uppercase; color:var(--accent); font-size:12px; font-weight:600; }
+  .lede { font-size: 18px; color:#3a352f; max-width: 760px; }
+  figure { margin: 18px 0 8px; background:#fff; border:1px solid var(--line); border-radius:14px; padding:10px; }
+  figure img { width:100%; height:auto; display:block; border-radius:8px; }
+  figcaption { color:var(--muted); font-size:13px; padding:8px 4px 2px; }
+  .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:12px; padding:16px 18px; }
+  .card h3 { margin:0 0 6px; font-size:16px; }
+  .card p { margin:0; color:#4a443d; font-size:14.5px; }
+  ul.checks { padding-left: 20px; color:#3a352f; }
+  ul.checks li { margin: 4px 0; }
+  .note { color:var(--muted); font-size:13.5px; }
+  .cta { margin-top: 40px; background:#fff; border:1px solid var(--line); border-radius:14px; padding: 22px; }
+  .btn { display:inline-block; margin: 8px 10px 0 0; padding: 10px 18px; border-radius: 999px; text-decoration:none; font-weight:500; }
+  .btn.main { background: var(--accent); color:#fff; }
+  .btn.alt { border:1px solid var(--line); color: var(--ink); background:#fff; }
+  a { color: var(--accent); }
+  footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
+</style>
+</head>
+<body>
+<main>
+  <div class="kicker">MetaTrader 5 Expert Advisor · private source</div>
+  <h1>LadderGuard: trade manager and account guard for MT5</h1>
+  <p class="lede">Attach it to one chart and it looks after every open position, whether you opened it by hand or
+    another EA did: partial profits at the targets, the stop to break-even, a stop that climbs level by level, and an
+    optional close-all at a set time. At the same time it watches the whole account and locks trading when a daily
+    loss or drawdown limit is hit.</p>
+
+  <figure>
+    <img src="live-demo.png" width="1600" height="900" alt="MetaTrader 5 gold chart with the LadderGuard panel: guard on, balance, equity, today's profit and loss, daily loss and drawdown bars, trades today, one managed XAUUSD position waiting for TP1, the rules line and four buttons">
+    <figcaption>Running live on a demo account (XAUUSD, M5, 21 October 2026): the on-chart panel with the guard on, the account figures and the position it manages.</figcaption>
+  </figure>
+
+  <h2>Trade manager</h2>
+  <div class="grid">
+    <div class="card"><h3>You choose the positions</h3><p>Every position, manual trades only, or one EA's magic number; every symbol or only the chart's symbol.</p></div>
+    <div class="card"><h3>Targets from your stop</h3><p>R is the stop distance. TP1 at 1R, TP2 at 2R, the last target at 3R or at the position's own take-profit. All adjustable.</p></div>
+    <div class="card"><h3>Partial profits</h3><p>40% of the original volume closes at TP1 and 30% at TP2; the rest rides to the last target. Volumes are rounded to the broker's steps.</p></div>
+    <div class="card"><h3>Break-even and ladder</h3><p>At TP1 the stop moves to entry plus a few points. After that, each time a new level is reached the stop moves up to the previous one.</p></div>
+    <div class="card"><h3>Close on time</h3><p>Optional close-all of the managed positions at a server time you set, for example before the daily rollover.</p></div>
+    <div class="card"><h3>Panel buttons</h3><p>Break-even all, Close 50%, Close all and Guard OFF, right on the chart.</p></div>
+  </div>
+
+  <figure>
+    <img src="panel-mockup.png" width="1920" height="1080" alt="Mockup of a gold chart showing TP1 reached with 40% closed, the stop moved to entry plus 0.10, the TP2 line where 30% closes, and the last target where the rest rides">
+    <figcaption>Design mockup with demo numbers, showing what each level means: after TP1, 40% is closed and the stop sits at entry +0.10; 30% more closes at TP2; the rest rides to the last target.</figcaption>
+  </figure>
+
+  <h2>Account guard</h2>
+  <div class="grid">
+    <div class="card"><h3>Daily loss limit</h3><p>A percentage of the day-start balance, a fixed amount, or both (whichever is hit first). When it is hit, every position is closed and trading stays locked until the next day.</p></div>
+    <div class="card"><h3>Maximum drawdown</h3><p>Measured from the equity peak, or static from the starting balance as many prop firms count it. A breach closes everything and locks until you unlock it.</p></div>
+    <div class="card"><h3>Trades per day</h3><p>A cap on new positions per day. Anything opened beyond it is closed at once until the day ends.</p></div>
+  </div>
+
+  <h2>How it was tested</h2>
+  <ul class="checks">
+    <li>43 of 43 unit tests pass: target math, volume rounding, break-even side, ladder steps and the guard's limits.</li>
+    <li>MetaTrader 5 Strategy Tester: TP1 and TP2 partial closes, break-even, the ladder up to level 4, the daily-loss lock, the drawdown lock, the trades-per-day cap and the timed close-all all checked.</li>
+    <li>Live on a demo account on 21 October 2026: it adopted a manual XAUUSD trade, closed 40% at TP1 and moved the stop to break-even.</li>
+  </ul>
+
+  <figure>
+    <img src="earlier-build.png" width="1600" height="900" alt="An earlier build of the LadderGuard panel on a gold chart, listing ten managed positions with the first five shown">
+    <figcaption>An earlier build of the panel on the same demo account, with ten positions in the list (first five shown, "+5 more").</figcaption>
+  </figure>
+
+  <p class="note">The source code is private; this page shows what the Expert Advisor does, not its code.</p>
+
+  <div class="cta">
+    <h2 style="margin-top:0">Want LadderGuard on your account?</h2>
+    <p>Available on request. The percentages, targets and limits are inputs, and it can be adapted to your own rules.</p>
+    <a class="btn main" href="https://t.me/EprahemDevBot">Message on Telegram</a>
+    <a class="btn alt" href="https://wa.me/970597448626">WhatsApp</a>
+    <a class="btn alt" href="mailto:eprahemyhya45@gmail.com">Email</a>
+    <a class="btn alt" href="https://eprahem-yhya.github.io/">See my CV</a>
+  </div>
+
+  <footer>Eprahem Yhya · Python &amp; MetaTrader 5 automation · Gaza, Palestine · remote</footer>
+</main>
+<!-- contact button (10-21): opens the developer's Telegram bot -->
+<a href="https://t.me/EprahemDevBot" target="_blank" rel="noopener" aria-label="Contact the developer on Telegram" style="position:fixed;right:16px;bottom:16px;z-index:2147483000;display:inline-flex;align-items:center;gap:8px;background:#229ED9;color:#fff;font:600 14px/1 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding:12px 16px;border-radius:999px;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.25)"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M9.8 15.3l-.4 5.4c.6 0 .8-.3 1.1-.6l2.6-2.5 5.5 4c1 .6 1.7.3 2-.9l3.6-16.9c.3-1.5-.6-2.1-1.6-1.7L1.4 10.4c-1.5.6-1.4 1.4-.3 1.7l5.4 1.7L19.1 6c.6-.4 1.1-.2.7.2z"/></svg>Contact the developer</a>
+</body>
+</html>

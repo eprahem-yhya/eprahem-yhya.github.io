@@ -3,18 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Eprahem Yhya — Software Developer</title>
-<meta name="description" content="Python developer: Telegram to MetaTrader 5 trading automation with strict risk rules, verified MQL5 seller, Next.js community platform and an offline QR menu product. Open to remote work.">
+<title>Eprahem Yhya — Python &amp; MetaTrader 5 Developer</title>
+<meta name="description" content="Python and MetaTrader 5 developer: Telegram-to-MT5 trade copiers, MQL5 Expert Advisors, signal-channel audits, Telegram bots and bilingual websites. Verified MQL5 seller. Remote, from Gaza.">
+<link rel="canonical" href="https://eprahem-yhya.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://eprahem-yhya.github.io/">
-<meta property="og:title" content="Eprahem Yhya — Software Developer">
-<meta property="og:description" content="Python developer: Telegram to MetaTrader 5 trading automation, verified MQL5 seller, Next.js community platform and an offline QR menu product. Open to remote work.">
+<meta property="og:title" content="Eprahem Yhya — Python &amp; MetaTrader 5 Developer">
+<meta property="og:description" content="Python and MetaTrader 5 developer: Telegram-to-MT5 trade copiers, MQL5 Expert Advisors, signal-channel audits, Telegram bots and bilingual websites. Verified MQL5 seller. Remote, from Gaza.">
 <meta property="og:image" content="https://eprahem-yhya.github.io/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Eprahem Yhya — Software Developer">
-<meta name="twitter:description" content="Offline-first restaurant ordering (QR menu & POS), automation bots, and web apps. Open to remote work.">
+<meta name="twitter:title" content="Eprahem Yhya — Python &amp; MetaTrader 5 Developer">
+<meta name="twitter:description" content="Python and MetaTrader 5 developer: Telegram-to-MT5 trade copiers, MQL5 Expert Advisors, signal-channel audits, Telegram bots and bilingual websites. Verified MQL5 seller. Remote, from Gaza.">
 <meta name="twitter:image" content="https://eprahem-yhya.github.io/og.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,8 +24,8 @@
 :root{
   --ink:#14110E;
   --body:#413B34;
-  --muted:#7C736A;
-  --accent:#9A6B2F;
+  --muted:#6E655C;
+  --accent:#8A5E28;
   --line:#E4DED5;
   --paper:#FDFBF7;
   --sans:'Inter',system-ui,sans-serif;
@@ -107,19 +108,25 @@ footer{
   font-size:.78rem;color:var(--muted);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
 }
 
-/* ---------- print ---------- */
-.print-btn{
+/* ---------- floating contact button ---------- */
+.fab{
   position:fixed;right:1.2rem;bottom:1.2rem;z-index:5;
-  background:var(--ink);color:var(--paper);border:0;cursor:pointer;
-  font:inherit;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;
-  padding:.8rem 1.5rem;border-radius:999px;box-shadow:0 8px 24px rgba(20,17,14,.25);
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:var(--ink);color:var(--paper);text-decoration:none;
+  font-size:.78rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+  padding:.8rem 1.4rem;border-radius:999px;box-shadow:0 8px 24px rgba(20,17,14,.25);
 }
+.fab:hover,.fab:focus-visible{background:var(--accent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (max-width:40rem){body{padding:1rem .5rem 5rem}}
+
+/* ---------- print ---------- */
 @media print{
   @page{size:A4;margin:11mm 13mm}
   html{font-size:12.6px}
   body{background:#fff;padding:0}
-  .sheet{box-shadow:none;max-width:none;padding:0}
-  .print-btn{display:none}
+  .sheet{box-shadow:none;max-width:none;padding:0;background:#fff}
+  .fab,.no-print{display:none!important}
   a{color:inherit}
   section{margin-top:1.1rem}
   body{line-height:1.42}
@@ -144,28 +151,39 @@ footer{
 </head>
 <body>
 
-<button class="print-btn" onclick="print()">Save as PDF</button>
+<a class="fab" href="https://t.me/EprahemDevBot" target="_blank" rel="noopener" aria-label="Contact the developer on Telegram"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.8 15.3l-.4 5.4c.6 0 .8-.3 1.1-.6l2.6-2.5 5.5 4c1 .6 1.7.3 2-.9l3.6-16.9c.3-1.5-.6-2.1-1.6-1.7L1.4 10.4c-1.5.6-1.4 1.4-.3 1.7l5.4 1.7L19.1 6c.6-.4 1.1-.2.7.2z"/></svg>Contact me</a>
 
-<div class="sheet">
+<main class="sheet">
 
   <header>
     <h1 class="name">Eprahem Yhya</h1>
-    <p class="role">Bot &amp; Web Developer</p>
+    <p class="role">Python · MetaTrader 5 · Web Developer</p>
     <div class="contact">
       <span>Gaza, Palestine · Remote</span>
       <a href="mailto:eprahemyhya45@gmail.com">eprahemyhya45@gmail.com</a>
       <a href="https://wa.me/970597448626">+970 597 448 626</a>
       <a href="https://t.me/EprahemDevBot">Telegram: @EprahemDevBot</a>
       <a href="https://github.com/eprahem-yhya">github.com/eprahem-yhya</a>
+      <a class="no-print" href="Eprahem-Yhya-CV.pdf" download>Download PDF</a>
     </div>
     <p class="summary">
-      Python developer who builds automation that runs unattended, and the web
-      front ends around it. My main project is a trading system that reads a
-      private signal channel, classifies each message, and executes it on
-      MetaTrader 5 with strict risk rules. Verified seller on MQL5.com, open to
-      MetaTrader 5 work: Expert Advisors and trade copiers.
+      I build trading automation and bots that run unattended, and the websites
+      around them. My main system reads a private Telegram signal channel,
+      classifies every message and executes it on MetaTrader 5 with strict risk
+      rules, on a VPS with a watchdog. I also write MQL5 Expert Advisors and am a
+      verified seller on MQL5.com. I work remotely with traders, signal-channel
+      owners and small businesses.
     </p>
   </header>
+
+  <section>
+    <h2>What I Can Build for You</h2>
+    <dl class="skills">
+      <div><dt>MetaTrader 5 &amp; trading</dt><dd>Expert Advisors, trade managers and account guards, Telegram-to-MT5 trade copiers, indicators, and backtests of a strategy or a signal channel on real price data.</dd></div>
+      <div><dt>Python automation &amp; bots</dt><dd>Telegram bots, channel readers and forwarders, browser automation with Playwright, scheduled jobs with a watchdog on a Windows VPS, FastAPI dashboards.</dd></div>
+      <div><dt>Websites &amp; web apps</dt><dd>Product and landing pages, bilingual Arabic / English sites with full RTL, Next.js apps with sign-in and roles, self-hosted with HTTPS.</dd></div>
+    </dl>
+  </section>
 
   <section>
     <h2>Selected Work</h2>
@@ -192,6 +210,43 @@ footer{
         <li>FastAPI and React dashboard on a shared SQLite database (WAL), behind bcrypt, a one-time Telegram code and a signed cookie. A read-only preview is public; the source stays private.</li>
       </ul>
       <p class="stack">Python · Telethon · Playwright · MetaTrader5 API · NumPy · Gemini API · FastAPI · React · SQLite</p>
+    </article>
+
+    <article class="project">
+      <div class="project-head">
+        <h3>LadderGuard — MT5 Trade Manager &amp; Account Guard</h3>
+        <span class="tag">MQL5 Expert Advisor</span>
+        <a class="live" href="https://eprahem-yhya.github.io/ladderguard/">See the product page</a>
+      </div>
+      <p class="lede">
+        One Expert Advisor on one chart that manages every open position, manual
+        or opened by other EAs, and guards the whole account, with an on-chart
+        panel.
+      </p>
+      <ul>
+        <li>Targets in multiples of the stop distance (R): 40% closed at TP1, 30% at TP2, stop to break-even plus a few points, then a ladder that moves the stop one level behind each further level. Optional close-all at a set server time.</li>
+        <li>Account guard: daily loss limit (% or money), maximum drawdown from the peak or static from the start (prop-firm style), and a cap on new trades per day. A breach closes the positions and locks trading.</li>
+        <li>43/43 unit tests; verified in the MT5 Strategy Tester (partials, break-even, ladder, every lock, timed close) and live on a demo account.</li>
+      </ul>
+      <p class="stack">MQL5 · MetaTrader 5 · Strategy Tester</p>
+    </article>
+
+    <article class="project">
+      <div class="project-head">
+        <h3>Signal Channel Audit</h3>
+        <span class="tag">Service</span>
+        <a class="live" href="https://eprahem-yhya.github.io/channel-audit/">See a sample</a>
+      </div>
+      <p class="lede">
+        Before a client copies a Telegram signal channel, I extract every call,
+        replay it on minute prices with the spread, and show what 200$ at 0.01
+        lot would have made week by week, with a clear verdict.
+      </p>
+      <ul>
+        <li>Compares several ways to manage the trades, then stress-tests the best one: without its best trade, in two halves, with a wider entry tolerance.</li>
+        <li>Sample, a public gold-signal channel: 15 written calls in a month, 10 closed. The best rule made about +21$ in 13 weeks, carried by one trade. Verdict: not worth copying.</li>
+      </ul>
+      <p class="stack">Python · NumPy · Telegram · minute price data</p>
     </article>
 
     <article class="project">
@@ -248,8 +303,8 @@ footer{
   <section>
     <h2>Technical Skills</h2>
     <dl class="skills">
-      <div><dt>Languages</dt><dd>Python, Kotlin, TypeScript, JavaScript, SQL, HTML, CSS</dd></div>
-      <div><dt>Automation &amp; trading</dt><dd>Telegram Bot API, Telethon, Playwright, MetaTrader 5 API, tick-level backtesting (NumPy), watchdogs, MQL5 marketplace</dd></div>
+      <div><dt>Languages</dt><dd>Python, MQL5, Kotlin, TypeScript, JavaScript, SQL, HTML, CSS</dd></div>
+      <div><dt>Automation &amp; trading</dt><dd>Telegram Bot API, Telethon, Playwright, MetaTrader 5 API, MQL5 Expert Advisors, MT5 Strategy Tester, tick-level backtesting (NumPy), watchdogs, MQL5.com verified seller</dd></div>
       <div><dt>Web &amp; mobile</dt><dd>Next.js, React, Node.js, FastAPI, Three.js, Android (Kotlin), RTL layout, Caddy</dd></div>
       <div><dt>Practice</dt><dd>SQLite, Git, CI on GitHub Actions, unit and end-to-end tests, Windows VPS operations</dd></div>
     </dl>
@@ -260,7 +315,7 @@ footer{
     <div class="row">
       <div class="entry">
         <h3>BSc, Computer Information Systems</h3>
-        <p class="meta">Third year · Expected 2027–2028 · programming diploma year completed before</p>
+        <p class="meta">Third year · expected 2027–2028 · after a completed programming diploma year</p>
       </div>
       <div class="entry">
         <h3>E-commerce Training</h3>
@@ -274,10 +329,10 @@ footer{
   </section>
 
   <footer>
-    <span>Available for freelance and contract work — remote. Paid in USDT.</span>
+    <span>Available for freelance and contract work, remote. Paid in USDT.</span>
     <span>eprahemyhya45@gmail.com</span>
   </footer>
 
-</div>
+</main>
 </body>
 </html>

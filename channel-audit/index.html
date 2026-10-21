@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Signal Channel Audit · test a Telegram channel before you copy it · Eprahem Yhya</title>
+<meta name="description" content="Every call of a Telegram trading-signal channel is extracted and replayed on minute prices with the spread. You get what 200$ at 0.01 lot would have made week by week, a stress test and a clear verdict.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://eprahem-yhya.github.io/channel-audit/">
+<meta property="og:title" content="Signal Channel Audit · test a channel before you copy it">
+<meta property="og:description" content="Every call replayed on real minute prices; weekly P/L at 0.01 lot on 200$; a stress test and a clear verdict.">
+<meta property="og:image" content="https://eprahem-yhya.github.io/channel-audit/weekly.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#1f1d1a; --muted:#6b645b; --accent:#a0522d; --paper:#fbf8f3; --line:#e7dfd3; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font:16px/1.6 Inter, system-ui, sans-serif; }
+  main { max-width: 980px; margin: 0 auto; padding: 48px 20px 96px; }
+  h1 { font-family: Fraunces, Georgia, serif; font-weight:600; font-size: clamp(30px, 5vw, 46px); line-height:1.15; margin: 0 0 14px; }
+  h2 { font-family: Fraunces, Georgia, serif; font-weight:600; font-size: 24px; margin: 44px 0 12px; }
+  .kicker { letter-spacing:.18em; text-transform:uppercase; color:var(--accent); font-size:12px; font-weight:600; }
+  .lede { font-size: 18px; color:#3a352f; max-width: 760px; }
+  figure { margin: 18px 0 8px; background:#fff; border:1px solid var(--line); border-radius:14px; padding:10px; }
+  figure img { width:100%; height:auto; display:block; border-radius:8px; }
+  figcaption { color:var(--muted); font-size:13px; padding:8px 4px 2px; }
+  .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:12px; padding:16px 18px; }
+  .card h3 { margin:0 0 6px; font-size:16px; }
+  .card p { margin:0; color:#4a443d; font-size:14.5px; }
+  .table-wrap { overflow-x:auto; background:#fff; border:1px solid var(--line); border-radius:12px; }
+  table { border-collapse:collapse; width:100%; font-size:14.5px; }
+  th, td { text-align:left; padding:10px 14px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { font-weight:500; color:var(--muted); width:42%; }
+  tr:last-child th, tr:last-child td { border-bottom:0; }
+  .verdict { margin-top:14px; background:#fff; border-left:4px solid var(--accent); border-radius:8px; padding:14px 18px; }
+  .note { color:var(--muted); font-size:13.5px; }
+  .cta { margin-top: 40px; background:#fff; border:1px solid var(--line); border-radius:14px; padding: 22px; }
+  .btn { display:inline-block; margin: 8px 10px 0 0; padding: 10px 18px; border-radius: 999px; text-decoration:none; font-weight:500; }
+  .btn.main { background: var(--accent); color:#fff; }
+  .btn.alt { border:1px solid var(--line); color: var(--ink); background:#fff; }
+  a { color: var(--accent); }
+  footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
+</style>
+</head>
+<body>
+<main>
+  <div class="kicker">Service · Telegram trading-signal channels</div>
+  <h1>Signal channel audit: test a channel before you copy it</h1>
+  <p class="lede">A signal channel shows its wins. Before you put money behind one, I take every call it posted, replay
+    each call on real minute prices with the spread, and show you what 200$ at the minimum lot would have made week by
+    week. You get the numbers, the weak spots and a clear verdict.</p>
+
+  <h2>What you get</h2>
+  <div class="grid">
+    <div class="card"><h3>Every call extracted</h3><p>Entry, stop and targets from every post in the period. Posts that show a result the moment they appear are adverts, not calls, and are kept apart.</p></div>
+    <div class="card"><h3>A fair replay</h3><p>Entry at the next minute after the post, and only while the price is still in the entry zone. If the stop and a target fall in the same minute, the stop counts first.</p></div>
+    <div class="card"><h3>Several ways to manage</h3><p>All at the first target, half and half, everything to the last target with a break-even stop, a stepped stop, and more, side by side.</p></div>
+    <div class="card"><h3>Money, not percentages</h3><p>What 200$ at 0.01 lot would have become, week by week, with the best week, the worst week and the deepest drawdown.</p></div>
+    <div class="card"><h3>A stress test</h3><p>The best result without its single best trade, the period split in two halves, and a wider entry tolerance. A result that only survives one of these is luck.</p></div>
+    <div class="card"><h3>A clear verdict</h3><p>Copy it, try it on demo only, or leave it, plus what the test could not see: VIP-only calls, deleted posts, a different broker's prices.</p></div>
+  </div>
+
+  <h2>Sample: a public gold-signal channel</h2>
+  <p>Three months of a public gold channel's posts were read, and every written call was tested on broker minute prices
+    with the real spread.</p>
+
+  <figure>
+    <img src="weekly.png" width="1200" height="496" alt="Weekly bar chart at 0.01 lot: no calls before 21 September, two winning weeks of about +17 and +25 dollars, one losing week of about −20 dollars, cumulative about +21 dollars">
+    <figcaption>Weekly result of the best management rule at 0.01 lot. No written calls were posted before 21 September, so the test really covers one month.</figcaption>
+  </figure>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Posts read</th><td>1,566 over three months, most of them thank-you notes, profit screenshots and "target hit" posts</td></tr>
+      <tr><th>Full written calls (entry, stop, targets)</th><td>15, all in the last month</td></tr>
+      <tr><th>Triggered</th><td>11 of 15; one was still open, so 10 closed trades</td></tr>
+      <tr><th>Simplest rule: everything at the first target</th><td>−20.2$ over 13 weeks on 200$ at 0.01 lot</td></tr>
+      <tr><th>Best rule: everything to the last target, stop to entry after the first</th><td>+21.2$ over 13 weeks (200$ → 221$); worst week −20.4$</td></tr>
+      <tr><th>Best rule without its single best trade (+35.4$)</th><td>about −14$</td></tr>
+      <tr><th>Entering every call at market, whatever the price</th><td>every rule loses</td></tr>
+    </table>
+  </div>
+
+  <div class="verdict"><strong>Verdict: not worth copying.</strong> Few calls are posted and they look hand-picked, the
+    simple way of trading them loses, and the best result hangs on one trade. To try it anyway: a demo account only, and
+    log every call for six to eight weeks before any real money.</div>
+
+  <p class="note">The channel is not named here. The audit was done with my own private tools; this page shows the
+    method and the result, not the code.</p>
+
+  <h2>Why test before copying</h2>
+  <p>I have run this kind of test on 20 public signal channels, and none of them passed. When the history is long enough
+    I test two years or more, because a channel that looks perfect for one year can lose money in another.</p>
+
+  <div class="cta">
+    <h2 style="margin-top:0">Want a channel checked?</h2>
+    <p>Send the channel link. You get the weekly chart, the numbers and a verdict in plain language, in English or Arabic.</p>
+    <a class="btn main" href="https://t.me/EprahemDevBot">Message on Telegram</a>
+    <a class="btn alt" href="https://wa.me/970597448626">WhatsApp</a>
+    <a class="btn alt" href="mailto:eprahemyhya45@gmail.com">Email</a>
+    <a class="btn alt" href="https://eprahem-yhya.github.io/">See my CV</a>
+  </div>
+
+  <footer>Eprahem Yhya · Python &amp; MetaTrader 5 automation · Gaza, Palestine · remote</footer>
+</main>
+<!-- contact button (10-21): opens the developer's Telegram bot -->
+<a href="https://t.me/EprahemDevBot" target="_blank" rel="noopener" aria-label="Contact the developer on Telegram" style="position:fixed;right:16px;bottom:16px;z-index:2147483000;display:inline-flex;align-items:center;gap:8px;background:#229ED9;color:#fff;font:600 14px/1 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding:12px 16px;border-radius:999px;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.25)"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M9.8 15.3l-.4 5.4c.6 0 .8-.3 1.1-.6l2.6-2.5 5.5 4c1 .6 1.7.3 2-.9l3.6-16.9c.3-1.5-.6-2.1-1.6-1.7L1.4 10.4c-1.5.6-1.4 1.4-.3 1.7l5.4 1.7L19.1 6c.6-.4 1.1-.2.7.2z"/></svg>Contact the developer</a>
+</body>
+</html>

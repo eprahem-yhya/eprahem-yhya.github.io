@@ -29,3 +29,11 @@ size = os.path.getsize(OUT) if os.path.exists(OUT) else 0
 print("rc=%s · %s · %d bytes" % (p.returncode, OUT, size))
 if not size:
     print((p.stderr or "")[:400], file=sys.stderr)
+
+# og.png: the link-preview card, rendered from og.html
+OG = os.path.join(HERE, "og.png")
+og_url = "file:///" + os.path.join(HERE, "og.html").replace(os.sep, "/")
+subprocess.run([CHROME, "--headless=new", "--disable-gpu", "--no-sandbox", "--hide-scrollbars",
+                "--screenshot=" + OG, "--window-size=1200,630", "--virtual-time-budget=10000", og_url],
+               capture_output=True, timeout=180)
+print("og: %s · %d bytes" % (OG, os.path.getsize(OG) if os.path.exists(OG) else 0))
