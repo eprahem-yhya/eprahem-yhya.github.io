@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Eprahem Yhya — Software Developer</title>
-<meta name="description" content="Software developer: offline-first restaurant ordering (QR menu & POS) for Android and Windows, automation bots, and web apps. Open to remote work.">
+<meta name="description" content="Python developer: Telegram to MetaTrader 5 trading automation with strict risk rules, verified MQL5 seller, Next.js community platform and an offline QR menu product. Open to remote work.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://eprahem-yhya.github.io/">
 <meta property="og:title" content="Eprahem Yhya — Software Developer">
-<meta property="og:description" content="Offline-first restaurant ordering (QR menu & POS) for Android and Windows, automation bots, and web apps. Open to remote work.">
+<meta property="og:description" content="Python developer: Telegram to MetaTrader 5 trading automation, verified MQL5 seller, Next.js community platform and an offline QR menu product. Open to remote work.">
 <meta property="og:image" content="https://eprahem-yhya.github.io/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -115,12 +115,30 @@ footer{
   padding:.8rem 1.5rem;border-radius:999px;box-shadow:0 8px 24px rgba(20,17,14,.25);
 }
 @media print{
-  @page{size:A4;margin:14mm}
+  @page{size:A4;margin:11mm 13mm}
+  html{font-size:12.6px}
   body{background:#fff;padding:0}
   .sheet{box-shadow:none;max-width:none;padding:0}
   .print-btn{display:none}
   a{color:inherit}
-  section{margin-top:1.5rem}
+  section{margin-top:1.1rem}
+  body{line-height:1.42}
+  .name{font-size:2.1rem}
+  .contact{margin-top:.6rem;font-size:.8rem}
+  .summary{margin-top:.8rem;padding-top:.8rem;font-size:.9rem;max-width:none}
+  h2{padding-bottom:.35rem;margin-bottom:.7rem}
+  .project{margin-bottom:.85rem}
+  .project h3{font-size:1.08rem}
+  .project .lede{margin:.25rem 0 .35rem;font-size:.86rem}
+  .project ul{font-size:.83rem}
+  .project li{margin-bottom:.15rem}
+  .stack{margin-top:.3rem;font-size:.75rem}
+  .skills{gap:.5rem 1.5rem;grid-template-columns:1fr 1fr}
+  .skills dd{font-size:.83rem}
+  .entry h3{font-size:.92rem}
+  .entry .meta{font-size:.78rem}
+  .row{gap:.8rem 1.5rem;grid-template-columns:repeat(3,1fr)}
+  footer{margin-top:1rem;padding-top:.6rem}
 }
 </style>
 </head>
@@ -140,12 +158,11 @@ footer{
       <a href="https://github.com/eprahem-yhya">github.com/eprahem-yhya</a>
     </div>
     <p class="summary">
-      I build two things: automation that runs unattended, and web pages people
-      remember. On the automation side it is Python bots wired into real systems
-      — Telegram, trading platforms, databases — where the hard part is not
-      writing the feature but keeping it correct at three in the morning with
-      nobody watching. On the web side it is polished, responsive front ends,
-      built with the same care and shipped to production.
+      Python developer who builds automation that runs unattended, and the web
+      front ends around it. My main project is a trading system that reads a
+      private signal channel, classifies each message, and executes it on
+      MetaTrader 5 with strict risk rules. Verified seller on MQL5.com, open to
+      MetaTrader 5 work: Expert Advisors and trade copiers.
     </p>
   </header>
 
@@ -157,6 +174,7 @@ footer{
         <h3>Automated Trading System</h3>
         <span class="tag">Private source</span>
         <a class="live" href="https://eprahem-yhya.github.io/observatory/">See the control panel</a>
+        <a class="live" href="https://github.com/eprahem-yhya/telegram-mt5-copier">See the open-source showcase</a>
       </div>
       <p class="lede">
         An end-to-end pipeline that reads trading signals from Telegram,
@@ -165,39 +183,32 @@ footer{
         months.
       </p>
       <ul>
-        <li>Classifies every incoming message into one of fifteen intents — new order, stop-loss move, partial close, cancellation — and forwards only what is executable.</li>
-        <li>Refuses unsafe instructions by design: an order whose stop sits on the wrong side of entry is rejected, and a request to remove a stop is never obeyed.</li>
-        <li>Web dashboard on FastAPI with a React front end, reading a shared SQLite database in WAL mode alongside the live bot.</li>
-        <li>Three-layer access: bcrypt password, one-time code over Telegram, then a signed session cookie. Reachable remotely through a Cloudflare tunnel.</li>
-        <li>Watchdog and heartbeat monitoring, scheduled backups, and automated weekly performance reports.</li>
-        <li>The control panel is published as a read-only preview: real interface, generated data, inert controls — the source stays private.</li>
+        <li>Reads a private signal channel through the Telegram API and, as a second path, through Telegram Web (Playwright + Chrome DevTools Protocol). Classifies each message into one of fifteen intents and forwards only what is executable.</li>
+        <li>Executes on MT5 with partial closes, break-even, a stop that trails one target behind, end-of-day close by server clock, risk caps, and rejection of any order whose stop is on the wrong side of entry. A request to remove a stop is never obeyed.</li>
+        <li>Mirrors channels to other channels through a bot, including edits and deletions.</li>
+        <li>Tick-level backtest in Python (NumPy) of 261 historical signals over five weeks, used to choose the exit rules.</li>
+        <li>Runs on a Windows VPS and heals itself: a scheduled watchdog restarts failed services and alerts on a stale feed; sessions are backed up daily; a position-size rule is applied once per trading day; a weekly report is sent. 50+ unit tests cover the trading engine.</li>
+        <li>FastAPI and React dashboard on a shared SQLite database (WAL), behind bcrypt, a one-time Telegram code and a signed cookie. A read-only preview is public; the source stays private.</li>
       </ul>
-      <p class="stack">Python · Telethon · MetaTrader5 API · Gemini API · FastAPI · React · SQLite · Cloudflare Tunnel</p>
+      <p class="stack">Python · Telethon · Playwright · MetaTrader5 API · NumPy · Gemini API · FastAPI · React · SQLite</p>
     </article>
 
     <article class="project">
       <div class="project-head">
         <h3>XMIND — Private Community Platform</h3>
-        <span class="tag">Live, members only</span>
-        <a class="live" href="https://x-mind.duckdns.org/">See the sign-in page</a>
+        <span class="tag">Members only</span>
       </div>
       <p class="lede">
         A private social network for one closed community of twenty to sixty
-        people: teams, a members directory, profiles with skills, and a feed of
-        posts, photos, comments and mentions. Built with one partner; I wrote
-        the feed and most of the screens, and I run everything after the code
-        &mdash; the server, deployments and backups.
+        people, built with one partner. I wrote the feed and most screens, and
+        I run the server, deployments and backups.
       </p>
       <ul>
-        <li>Nobody walks in: an account exists only through an invite, a newcomer joins a team only when its leader accepts, and every action is checked on the server against two role ladders &mdash; founder, admin and member across the site; leader, co-leader and member inside a team.</li>
-        <li>Passwords hashed with Argon2, 30-day sessions in an HttpOnly cookie, rate-limited sign-in, and one-time reset links.</li>
-        <li>Photos are resized and recompressed on upload and served through a route that applies the visibility rule of the post they belong to, so a team-only picture never leaks by its URL.</li>
-        <li>Mentions with group tags &mdash; @team, @leaders, @everyone &mdash; whose reach follows the writer&rsquo;s role, and replies to comments threaded two levels deep.</li>
-        <li>Arabic and English with full right-to-left layout, light and dark themes, and an Android app that wraps the same site.</li>
-        <li>Self-hosted on a Windows server behind Caddy with automatic HTTPS: only ports 80 and 443 are open, the app restarts itself if it stops, and a full backup lands in Telegram every night.</li>
-        <li>Over 150 unit tests and an end-to-end suite that builds the app and drives it through a browser, run before every deploy.</li>
+        <li>Invite-only accounts and two server-checked role ladders (site and team). Argon2 passwords, HttpOnly sessions, rate-limited sign-in, and photos served through the visibility rule of their post.</li>
+        <li>Arabic and English with full RTL, an Android wrapper app, self-hosted behind Caddy with automatic HTTPS and a nightly backup to Telegram.</li>
+        <li>Over 150 unit tests plus an end-to-end browser suite, run before every deploy.</li>
       </ul>
-      <p class="stack">TypeScript · Next.js · React · Node.js · SQLite · Argon2 · sharp · Caddy</p>
+      <p class="stack">TypeScript · Next.js · React · Node.js · SQLite · Argon2 · Caddy</p>
     </article>
 
     <article class="project">
@@ -207,76 +218,29 @@ footer{
         <a class="live" href="https://eprahem-yhya.github.io/qr-menu-showcase/">See the screens</a>
       </div>
       <p class="lede">
-        A complete QR menu and table-ordering system for restaurants that needs
-        no server, no hosting, no subscription and no internet. Menu, ordering,
-        the captain&rsquo;s screen, kitchen printing and the till bill all run
-        inside one Android app on a phone in the restaurant &mdash; or, in the
-        Windows edition, on the cashier&rsquo;s PC.
+        A QR menu and table-ordering system that needs no server, hosting or
+        internet: an HTTP server inside the Android app serves guests over the
+        restaurant&rsquo;s own WiFi.
       </p>
       <ul>
-        <li>The phone is the server: an HTTP server inside the app serves the menu to guests over the restaurant&rsquo;s own WiFi, so service survives an internet outage.</li>
-        <li>Guests scan the QR on the table and order from the browser — nothing to install; the captain confirms each order before the kitchen sees it.</li>
-        <li>Prints to ESC/POS thermal printers per station — grill, bar, till — each getting only its own lines, with Arabic shaped correctly on paper.</li>
-        <li>Arabic or English chosen at setup: every screen, message, printed ticket and QR card follows, and a guest can still switch the menu for themselves.</li>
-        <li>Money handled in whole minor units, so the day&rsquo;s report reconciles against the cash drawer exactly.</li>
-        <li>Over ninety instrumented tests on a real Android device in CI, including one that plays a whole evening through and checks the night&rsquo;s takings, and a run that photographs every screen.</li>
-        <li>Sold as a finished product with a four-day trial and per-device activation, so a buyer works a real evening on it before paying.</li>
-        <li>Windows edition: the same screens served by a Python port of the server, shipped as a single .exe with a tray icon &mdash; the cashier sees the full itemised bill on the PC, the captain manages orders from a phone over the LAN, and the roles are enforced server-side. Same database schema and activation, so a phone backup restores on the PC.</li>
+        <li>Guests order from the browser; the captain confirms; ESC/POS thermal printers print per station, with Arabic shaped correctly. Money is kept in whole minor units so the day&rsquo;s report matches the cash drawer.</li>
+        <li>Over ninety instrumented tests on a real device in CI. Windows edition: a Python port shipped as a single .exe, with the same database schema.</li>
       </ul>
-      <p class="stack">Kotlin · Android · NanoHTTPD · Python · SQLite · ESC/POS printing · PyInstaller · GitHub Actions</p>
+      <p class="stack">Kotlin · Android · NanoHTTPD · Python · SQLite · ESC/POS · PyInstaller · GitHub Actions</p>
     </article>
 
     <article class="project">
       <div class="project-head">
-        <h3>AMBER — Coffee House</h3>
-        <a class="live" href="https://eprahem-yhya.github.io/amber-cafe/">View live</a>
+        <h3>Two 3D web demos</h3>
+        <a class="live" href="https://eprahem-yhya.github.io/amber-cafe/">AMBER, coffee house</a>
+        <a class="live" href="https://eprahem-yhya.github.io/maison-noor/">MAISON NOOR, storefront</a>
       </div>
       <p class="lede">
-        A landing page built around a scroll-driven 3D scene: a coffee bean
-        turns and rises, a porcelain cup grows into its place, steam lifts once
-        there is something to rise from.
+        Single-file Three.js pages: a scroll-driven scene drawn with no image
+        assets, and a fragrance storefront with a glTF bottle and a working
+        cart. Both are bilingual EN / AR with RTL, and fall back to a static
+        view without WebGL or with reduced motion.
       </p>
-      <ul>
-        <li>Every asset is generated in the browser — the latte art and particle sprites are drawn to a canvas at runtime, so the page ships no images.</li>
-        <li>Environment-mapped reflections and filmic tone mapping, which is what separates a 3D object from a photograph.</li>
-        <li>Full English / Arabic switching with RTL layout, without a reload or a second page.</li>
-        <li>Degrades on purpose: no WebGL, a reduced-motion preference, or a low-memory device gets a static composition instead of a page that stutters.</li>
-        <li>One HTML file, no build step, no framework.</li>
-      </ul>
-      <p class="stack">Three.js · JavaScript modules · CSS · GitHub Pages</p>
-    </article>
-
-    <article class="project">
-      <div class="project-head">
-        <h3>MAISON NOOR — Storefront</h3>
-        <a class="live" href="https://eprahem-yhya.github.io/maison-noor/">View live</a>
-      </div>
-      <p class="lede">
-        A luxury fragrance storefront with a photoreal 3D hero and a working
-        cart, built as one static page.
-      </p>
-      <ul>
-        <li>A real glTF bottle rendered with true glass transmission and refraction, lit by an HDRI environment map so every highlight reflects an actual place.</li>
-        <li>The brand label is drawn to a canvas at runtime and mapped onto the model — what stops a licensed asset from looking licensed.</li>
-        <li>Cart with size variants, quantity, live totals and badge count; the drawer traps focus, restores it on close, and closes on Escape.</li>
-        <li>Palette, type pairing and motion tier resolved from a design-intelligence dataset rather than chosen by eye.</li>
-        <li>Bilingual EN / AR including drawer direction, 44px minimum targets, visible focus, and motion disabled on request.</li>
-        <li>Built on the commerce side too: I trained in e-commerce and sold on eBay, so the storefront is shaped around how a listing actually converts, not only how it looks.</li>
-      </ul>
-      <p class="stack">Three.js · glTF · HDRI lighting · JavaScript · CSS · GitHub Pages</p>
-    </article>
-
-    <article class="project">
-      <div class="project-head">
-        <h3>Channel Mirror</h3>
-        <span class="tag">Companion tool</span>
-      </div>
-      <p class="lede">
-        A Telegram client that mirrors messages from an external source into a
-        channel I control, including edits and deletions, so downstream systems
-        read from one predictable place instead of a feed I cannot govern.
-      </p>
-      <p class="stack">Python · Telethon · SQLite</p>
     </article>
   </section>
 
@@ -284,37 +248,27 @@ footer{
     <h2>Technical Skills</h2>
     <dl class="skills">
       <div><dt>Languages</dt><dd>Python, Kotlin, TypeScript, JavaScript, SQL, HTML, CSS</dd></div>
-      <div><dt>Automation</dt><dd>Telegram Bot API, Telethon, MetaTrader 5 API, scheduled and long-running services</dd></div>
-      <div><dt>Mobile &amp; desktop</dt><dd>Android (Kotlin), embedded HTTP server, WebView, instrumented testing on device; Windows desktop apps in Python (PyInstaller, tray, WebView2)</dd></div>
-      <div><dt>Web</dt><dd>Next.js, React, Node.js, FastAPI, Three.js, responsive and RTL layout; self-hosting behind Caddy with automatic HTTPS</dd></div>
-      <div><dt>Data</dt><dd>SQLite (WAL, concurrent readers), schema design, reporting</dd></div>
-      <div><dt>Practice</dt><dd>Git, CI on GitHub Actions, structured logging, watchdogs and health checks, API integration</dd></div>
+      <div><dt>Automation &amp; trading</dt><dd>Telegram Bot API, Telethon, Playwright, MetaTrader 5 API, tick-level backtesting (NumPy), watchdogs, MQL5 marketplace</dd></div>
+      <div><dt>Web &amp; mobile</dt><dd>Next.js, React, Node.js, FastAPI, Three.js, Android (Kotlin), RTL layout, Caddy</dd></div>
+      <div><dt>Practice</dt><dd>SQLite, Git, CI on GitHub Actions, unit and end-to-end tests, Windows VPS operations</dd></div>
     </dl>
   </section>
 
   <section>
-    <h2>Education</h2>
+    <h2>Education &amp; Languages</h2>
     <div class="row">
       <div class="entry">
         <h3>BSc, Computer Information Systems</h3>
-        <p class="meta">Third year · Expected 2027–2028</p>
-      </div>
-      <div class="entry">
-        <h3>Programming Diploma Year</h3>
-        <p class="meta">Completed before the degree</p>
+        <p class="meta">Third year · Expected 2027–2028 · programming diploma year completed before</p>
       </div>
       <div class="entry">
         <h3>E-commerce Training</h3>
         <p class="meta">Gaza, 2023 · followed by selling on eBay</p>
       </div>
-    </div>
-  </section>
-
-  <section>
-    <h2>Languages</h2>
-    <div class="row">
-      <div class="entry"><h3>Arabic</h3><p class="meta">Native</p></div>
-      <div class="entry"><h3>English</h3><p class="meta">Intermediate — written and technical communication</p></div>
+      <div class="entry">
+        <h3>Arabic · English</h3>
+        <p class="meta">Native · Intermediate, strong in written and technical English</p>
+      </div>
     </div>
   </section>
 
