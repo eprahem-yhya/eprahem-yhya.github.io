@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RiskPanel · Risk-Based Lot Calculator and Trader for MT5 · Eprahem Yhya</title>
+<meta name="description" content="An MT5 panel that sizes the lot from your risk and your stop, rounded down, with a hard risk cap, a margin check and one-click BUY / SELL. No signals.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://eprahem-yhya.github.io/riskpanel/">
+<meta property="og:title" content="RiskPanel · Risk-Based Lot Calculator and Trader for MT5">
+<meta property="og:description" content="An MT5 panel that sizes the lot from your risk and your stop, rounded down, with a hard risk cap, a margin check and one-click BUY / SELL. No signals.">
+<meta property="og:image" content="https://eprahem-yhya.github.io/riskpanel/lot.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#1f1d1a; --muted:#6b645b; --accent:#a0522d; --paper:#fbf8f3; --line:#e7dfd3; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font:16px/1.6 Inter, system-ui, sans-serif; }
+  main { max-width: 980px; margin: 0 auto; padding: 48px 20px 96px; }
+  h1 { font-family: Fraunces, Georgia, serif; font-weight:600; font-size: clamp(30px, 5vw, 46px); line-height:1.15; margin: 0 0 14px; }
+  h2 { font-family: Fraunces, Georgia, serif; font-weight:600; font-size: 24px; margin: 44px 0 12px; }
+  .kicker { letter-spacing:.18em; text-transform:uppercase; color:var(--accent); font-size:12px; font-weight:600; }
+  .lede { font-size: 18px; color:#3a352f; max-width: 760px; }
+  figure { margin: 18px 0 8px; background:#fff; border:1px solid var(--line); border-radius:14px; padding:10px; }
+  figure img { width:100%; height:auto; display:block; border-radius:8px; }
+  figcaption { color:var(--muted); font-size:13px; padding:8px 4px 2px; }
+  .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:12px; padding:16px 18px; }
+  .card h3 { margin:0 0 6px; font-size:16px; }
+  .card p { margin:0; color:#4a443d; font-size:14.5px; }
+  ul.checks { padding-left: 20px; color:#3a352f; }
+  ul.checks li { margin: 4px 0; }
+  .note { color:var(--muted); font-size:13.5px; }
+  .cta { margin-top: 40px; background:#fff; border:1px solid var(--line); border-radius:14px; padding: 22px; }
+  .btn { display:inline-block; margin: 8px 10px 0 0; padding: 10px 18px; border-radius: 999px; text-decoration:none; font-weight:500; }
+  .btn.main { background: var(--accent); color:#fff; }
+  .btn.alt { border:1px solid var(--line); color: var(--ink); background:#fff; }
+  a { color: var(--accent); }
+  footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
+</style>
+</head>
+<body>
+<main>
+  <div class="kicker">MetaTrader 5 Expert Advisor · utility · private source</div>
+  <h1>RiskPanel: never risk more than you chose</h1>
+  <p class="lede">You pick the risk (a percentage of your account or a fixed amount of money) and the stop. RiskPanel sizes the lot so that, if the stop is hit, the loss is at most the amount you chose, rounded down to the broker's volume step, and shows it on the chart before you click. Then BUY or SELL opens the trade with that stop and an optional take profit. It does not decide what to trade and gives no signals.</p>
+
+  <figure>
+    <img src="lot.png" width="1280" height="720" alt="Risk 1% and a 300 point stop on XAUUSD: the lot is sized and rounded down." loading="lazy">
+    <figcaption>Risk 1% and a 300 point stop on XAUUSD: the lot is sized and rounded down.</figcaption>
+  </figure>
+
+  <figure>
+    <img src="money.png" width="1280" height="720" alt="A fixed risk of 200 on EURUSD: lot, stop, target, loss at the stop and margin." loading="lazy">
+    <figcaption>A fixed risk of 200 on EURUSD: lot, stop, target, loss at the stop and margin.</figcaption>
+  </figure>
+
+  <figure>
+    <img src="line.png" width="1280" height="720" alt="Drag the stop line on the chart; SELL is blocked because its stop would be on the wrong side." loading="lazy">
+    <figcaption>Drag the stop line on the chart; SELL is blocked because its stop would be on the wrong side.</figcaption>
+  </figure>
+
+  <figure>
+    <img src="closeup.png" width="1280" height="720" alt="Close-up: risk money, stop distance, lot / SL / TP, loss at the stop, gain at the target and margin before you click." loading="lazy">
+    <figcaption>Close-up: risk money, stop distance, lot / SL / TP, loss at the stop, gain at the target and margin before you click.</figcaption>
+  </figure>
+
+  <h2>Who it is for</h2>
+  <p class="lede">Discretionary traders who want every trade to carry the same planned loss, on forex, metals or indices, without doing lot maths by hand.</p>
+
+  <h2>Key features</h2>
+  <div class="grid">
+    <div class="card"><h3>Lot from your stop</h3><p>The loss between the real entry and the real stop is priced by the terminal's own profit calculation, so it fits forex, metals, indices and any account currency.</p></div>
+    <div class="card"><h3>Always rounded down</h3><p>Rounded down to the volume step, then priced again at the exact lot, so the loss at the stop is never above the money you chose.</p></div>
+    <div class="card"><h3>Hard risk cap</h3><p>A maximum risk (5% of the base by default) applies in both modes.</p></div>
+    <div class="card"><h3>Margin check</h3><p>The margin the trade needs is compared with your free margin before the order.</p></div>
+    <div class="card"><h3>Blocked buttons with a reason</h3><p>When a side cannot be traded, its button turns grey and the panel shows a one-line reason.</p></div>
+    <div class="card"><h3>Self-checks</h3><p>On start the panel tests its own maths and, on the first tick, more cases against the broker's pricing. If one fails, the buttons are disabled.</p></div>
+    <div class="card"><h3>Stop and target</h3><p>Stop as points or a draggable chart line. Target as a multiple of the stop (R), or none. Optional confirmation before each order.</p></div>
+  </div>
+
+  <h2>Honest limits</h2>
+  <ul class="checks">
+    <li>Slippage, commission and swap are not part of the lot; a real stop-out can lose a little more than the amount you chose.</li>
+    <li>On a netting account a new trade adds to the existing position and the stop and take profit apply to the whole position.</li>
+    <li>The broker's total volume limit per symbol is not checked; the broker rejects such an order.</li>
+    <li>Brokers that refuse stops on market orders will reject the order, since it carries the stop and take profit.</li>
+    <li>It does not manage the trade after it opens, gives no signals and promises no profit.</li>
+    <li>In the Strategy Tester it opens demo trades so you can see it work; on a live or demo account it trades only when you press a button.</li>
+  </ul>
+
+  <p class="note">The source code is private; this page shows what the product does, not its code. Screenshots are from a MetaTrader 5 demo account.</p>
+
+  <div class="cta">
+    <h2 style="margin-top:0">Want RiskPanel on your terminal?</h2>
+    <p>Available on the MQL5 Market. Risk mode, stop, target and cap are inputs. For a version adapted to your own rules, message me. Price: 30 USD.</p>
+    <a class="btn main" href="https://www.mql5.com/en/market/product/203364">Get it on the MQL5 Market</a>
+    <a class="btn alt" href="https://t.me/EprahemDevBot">Message on Telegram</a>
+    <a class="btn alt" href="https://wa.me/970597448626">WhatsApp</a>
+    <a class="btn alt" href="mailto:eprahemyhya45@gmail.com">Email</a>
+    <a class="btn alt" href="https://eprahem-yhya.github.io/">See my CV</a>
+  </div>
+
+  <footer>Eprahem Yhya · Python &amp; MetaTrader 5 automation · Gaza, Palestine · remote</footer>
+</main>
+<!-- contact button (10-21): opens the developer's Telegram bot -->
+<a href="https://t.me/EprahemDevBot" target="_blank" rel="noopener" aria-label="Contact the developer on Telegram" style="position:fixed;right:16px;bottom:16px;z-index:2147483000;display:inline-flex;align-items:center;gap:8px;background:#229ED9;color:#fff;font:600 14px/1 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding:12px 16px;border-radius:999px;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.25)"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M9.8 15.3l-.4 5.4c.6 0 .8-.3 1.1-.6l2.6-2.5 5.5 4c1 .6 1.7.3 2-.9l3.6-16.9c.3-1.5-.6-2.1-1.6-1.7L1.4 10.4c-1.5.6-1.4 1.4-.3 1.7l5.4 1.7L19.1 6c.6-.4 1.1-.2.7.2z"/></svg>Contact the developer</a>
+</body>
+</html>

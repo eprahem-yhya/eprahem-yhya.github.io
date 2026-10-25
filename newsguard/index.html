@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NewsGuard · Economic News Guard for MT5 Positions · Eprahem Yhya</title>
+<meta name="description" content="An MT5 Expert Advisor that reads the broker's built-in economic calendar and, around important events, warns you, moves stops to break-even or closes your positions. It does not open trades.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://eprahem-yhya.github.io/newsguard/">
+<meta property="og:title" content="NewsGuard · Economic News Guard for MT5 Positions">
+<meta property="og:description" content="An MT5 Expert Advisor that reads the broker's built-in economic calendar and, around important events, warns you, moves stops to break-even or closes your positions. It does not open trades.">
+<meta property="og:image" content="https://eprahem-yhya.github.io/newsguard/panel.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#1f1d1a; --muted:#6b645b; --accent:#a0522d; --paper:#fbf8f3; --line:#e7dfd3; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font:16px/1.6 Inter, system-ui, sans-serif; }
+  main { max-width: 980px; margin: 0 auto; padding: 48px 20px 96px; }
+  h1 { font-family: Fraunces, Georgia, serif; font-weight:600; font-size: clamp(30px, 5vw, 46px); line-height:1.15; margin: 0 0 14px; }
+  h2 { font-family: Fraunces, Georgia, serif; font-weight:600; font-size: 24px; margin: 44px 0 12px; }
+  .kicker { letter-spacing:.18em; text-transform:uppercase; color:var(--accent); font-size:12px; font-weight:600; }
+  .lede { font-size: 18px; color:#3a352f; max-width: 760px; }
+  figure { margin: 18px 0 8px; background:#fff; border:1px solid var(--line); border-radius:14px; padding:10px; }
+  figure img { width:100%; height:auto; display:block; border-radius:8px; }
+  figcaption { color:var(--muted); font-size:13px; padding:8px 4px 2px; }
+  .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:12px; padding:16px 18px; }
+  .card h3 { margin:0 0 6px; font-size:16px; }
+  .card p { margin:0; color:#4a443d; font-size:14.5px; }
+  ul.checks { padding-left: 20px; color:#3a352f; }
+  ul.checks li { margin: 4px 0; }
+  .note { color:var(--muted); font-size:13.5px; }
+  .cta { margin-top: 40px; background:#fff; border:1px solid var(--line); border-radius:14px; padding: 22px; }
+  .btn { display:inline-block; margin: 8px 10px 0 0; padding: 10px 18px; border-radius: 999px; text-decoration:none; font-weight:500; }
+  .btn.main { background: var(--accent); color:#fff; }
+  .btn.alt { border:1px solid var(--line); color: var(--ink); background:#fff; }
+  a { color: var(--accent); }
+  footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
+</style>
+</head>
+<body>
+<main>
+  <div class="kicker">MetaTrader 5 Expert Advisor · utility · private source</div>
+  <h1>NewsGuard: protect your open positions from news spikes</h1>
+  <p class="lede">Attach it to one chart and it reads the economic calendar built into MetaTrader 5. When an important event for your currencies is close, it looks after the positions you choose: it warns you, secures them with a break-even stop, or closes them. It does not open trades and it gives no signals.</p>
+
+  <figure>
+    <img src="panel.png" width="1280" height="720" alt="The panel with real calendar data: next event, impact, countdown, the active rules and the calendar status." loading="lazy">
+    <figcaption>The panel with real calendar data: next event, impact, countdown, the active rules and the calendar status.</figcaption>
+  </figure>
+
+  <figure>
+    <img src="before.png" width="1280" height="720" alt="Before the window: status CLEAR and the time left to the event (test event preview)." loading="lazy">
+    <figcaption>Before the window: status CLEAR and the time left to the event (test event preview).</figcaption>
+  </figure>
+
+  <figure>
+    <img src="inside.png" width="1280" height="720" alt="Inside the window: the panel turns red and action 1 (warn only) is active (test event preview)." loading="lazy">
+    <figcaption>Inside the window: the panel turns red and action 1 (warn only) is active (test event preview).</figcaption>
+  </figure>
+
+  <figure>
+    <img src="eurusd.png" width="1280" height="720" alt="EURUSD with EUR and USD events and a wider window of 30 minutes before and after (test event preview)." loading="lazy">
+    <figcaption>EURUSD with EUR and USD events and a wider window of 30 minutes before and after (test event preview).</figcaption>
+  </figure>
+
+  <h2>Who it is for</h2>
+  <p class="lede">Traders who hold positions through the day, manual traders and people running other EAs, and who do not want to be sitting in a trade when a high-impact release hits.</p>
+
+  <h2>Key features</h2>
+  <div class="grid">
+    <div class="card"><h3>Three actions</h3><p>1 = warn only (pop-up, optional push to the phone). 2 = move the stop to break-even for positions in profit. 3 = close every position in the filter. The default is 1, so you can watch it first.</p></div>
+    <div class="card"><h3>Built-in calendar</h3><p>Uses the MT5 economic calendar: no web requests, no DLLs. High impact only, or high and medium. Currencies from the chart symbol, or your own list.</p></div>
+    <div class="card"><h3>Your window</h3><p>Default 15 minutes before to 15 minutes after the event, both adjustable. The event list refreshes every 5 minutes and looks 48 hours ahead.</p></div>
+    <div class="card"><h3>You choose the positions</h3><p>Every position, manual trades only, or one EA's magic number; every symbol or only the chart's.</p></div>
+    <div class="card"><h3>Panel</h3><p>Status, next or current event, currency, impact, server and UTC time, countdown, active rules, last action.</p></div>
+    <div class="card"><h3>Alerts</h3><p>Pop-up at the start of a window and an optional push message to the MetaTrader mobile app.</p></div>
+  </div>
+
+  <h2>Honest limits</h2>
+  <ul class="checks">
+    <li>It cannot stop you or another EA from opening a trade inside the window. With action 3 it closes such a position at the next tick, so the position can exist for a moment and the spread is paid.</li>
+    <li>The calendar is the broker's own, in broker server time; the panel shows server and UTC time.</li>
+    <li>Break-even needs room: the new stop must be at least the broker's minimum distance away, otherwise it is retried on the next pass.</li>
+    <li>Stops and closes are market operations: no guarantee against slippage, gaps or spikes.</li>
+    <li>It works only while the terminal and the EA are running; a VPS keeps them running.</li>
+    <li>The Strategy Tester has no economic calendar, so there it uses a demo event and demo trades. On a live or demo account it never opens a trade of its own.</li>
+  </ul>
+
+  <p class="note">The source code is private; this page shows what the product does, not its code. Screenshots are from a MetaTrader 5 demo account.</p>
+
+  <div class="cta">
+    <h2 style="margin-top:0">Want NewsGuard on your terminal?</h2>
+    <p>Available on the MQL5 Market. Default is warn only; the window, importance and action are inputs. For a version adapted to your own rules, message me. Price: 39 USD.</p>
+    <a class="btn main" href="https://www.mql5.com/en/market/product/203362">Get it on the MQL5 Market</a>
+    <a class="btn alt" href="https://t.me/EprahemDevBot">Message on Telegram</a>
+    <a class="btn alt" href="https://wa.me/970597448626">WhatsApp</a>
+    <a class="btn alt" href="mailto:eprahemyhya45@gmail.com">Email</a>
+    <a class="btn alt" href="https://eprahem-yhya.github.io/">See my CV</a>
+  </div>
+
+  <footer>Eprahem Yhya · Python &amp; MetaTrader 5 automation · Gaza, Palestine · remote</footer>
+</main>
+<!-- contact button (10-21): opens the developer's Telegram bot -->
+<a href="https://t.me/EprahemDevBot" target="_blank" rel="noopener" aria-label="Contact the developer on Telegram" style="position:fixed;right:16px;bottom:16px;z-index:2147483000;display:inline-flex;align-items:center;gap:8px;background:#229ED9;color:#fff;font:600 14px/1 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding:12px 16px;border-radius:999px;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.25)"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M9.8 15.3l-.4 5.4c.6 0 .8-.3 1.1-.6l2.6-2.5 5.5 4c1 .6 1.7.3 2-.9l3.6-16.9c.3-1.5-.6-2.1-1.6-1.7L1.4 10.4c-1.5.6-1.4 1.4-.3 1.7l5.4 1.7L19.1 6c.6-.4 1.1-.2.7.2z"/></svg>Contact the developer</a>
+</body>
+</html>
